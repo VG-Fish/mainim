@@ -40,8 +40,13 @@ class mAInim(toga.App):
         self.main_window.content = main_box
         self.main_window.show()
 
-    def say_hello(self, _) -> None:
-        print(f"Hello, {self.name_input.value}")
+    async def say_hello(self, _) -> None:
+        await self.main_window.dialog(
+            toga.InfoDialog(
+                f"Hello, {self.name_input.value}!",
+                "Hi, there!",
+            )
+        )
 
 
 def main():
