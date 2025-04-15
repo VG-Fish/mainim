@@ -19,18 +19,18 @@ class mAInim(toga.App):
 
         name_label = toga.Label(
             "Your name: ",
-            style=Pack(margin=(0, 5))
+            style=Pack(padding=(0, 5))
         )
         self.name_input = toga.TextInput(style=Pack(flex=1))
 
-        name_box = toga.Box(style=Pack(direction=ROW, margin=5))
+        name_box = toga.Box(style=Pack(direction=ROW, padding=5))
         name_box.add(name_label)
         name_box.add(self.name_input)
 
         button = toga.Button(
             "Say Hello!",
             on_press=self.say_hello,
-            style=Pack(margin=5)
+            style=Pack(padding=5)
         )
 
         main_box.add(name_box)
