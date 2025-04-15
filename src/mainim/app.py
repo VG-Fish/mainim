@@ -1,6 +1,7 @@
 # /// script
 # requires-python = ">=3.13"
 # dependencies = [
+#     "httpx",
 #     "toga",
 # ]
 # ///
@@ -11,6 +12,9 @@ An app to turn natural language into mathematical animations.
 import toga
 from toga.style import Pack
 from toga.style.pack import COLUMN, ROW
+
+import httpx
+
 from typing import Self
 
 def greeting(name: str) -> str:
@@ -44,10 +48,15 @@ class mAInim(toga.App):
         self.main_window.show()
 
     async def say_hello(self: Self, _) -> None:
+        with httpx.Client() as client:
+            response =  client.get("https://jsonplaceholder.typicode.com/posts/42")
+        
+        payload = response.json()
+
         await self.main_window.dialog(
             toga.InfoDialog(
                 greeting(self.name_input.value),
-                "Hi, there!",
+                payload["body"],
             )
         )
 
